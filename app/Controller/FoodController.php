@@ -126,8 +126,6 @@ class FoodController extends AppController{
       $this->set('foods',$this->Food->find('all'));
   }
 
-  public function blogs(){
-    
-  }
+
 }
 ?>

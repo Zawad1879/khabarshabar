@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2017 at 12:39 PM
+-- Generation Time: Mar 01, 2017 at 04:49 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -19,6 +19,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `khabarshabar`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blogs`
+--
+
+CREATE TABLE `blogs` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `text` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -65,45 +80,37 @@ INSERT INTO `foods` (`id`, `food_id`, `food_name`, `food_calories`, `food_quanti
 -- --------------------------------------------------------
 
 --
--- Table structure for table `monthly_progresses`
+-- Table structure for table `tracked_calories`
 --
 
-CREATE TABLE `monthly_progresses` (
-  `users_id` int(11) NOT NULL,
-  `year` int(11) NOT NULL,
-  `month` varchar(255) NOT NULL,
-  `1` int(11) NOT NULL,
-  `2` int(11) NOT NULL,
-  `3` int(11) NOT NULL,
-  `4` int(11) NOT NULL,
-  `5` int(11) NOT NULL,
-  `6` int(11) NOT NULL,
-  `7` int(11) NOT NULL,
-  `8` int(11) NOT NULL,
-  `9` int(11) NOT NULL,
-  `10` int(11) NOT NULL,
-  `11` int(11) NOT NULL,
-  `12` int(11) NOT NULL,
-  `13` int(11) NOT NULL,
-  `14` int(11) NOT NULL,
-  `15` int(11) NOT NULL,
-  `16` int(11) NOT NULL,
-  `17` int(11) NOT NULL,
-  `18` int(11) NOT NULL,
-  `19` int(11) NOT NULL,
-  `20` int(11) NOT NULL,
-  `21` int(11) NOT NULL,
-  `22` int(11) NOT NULL,
-  `23` int(11) NOT NULL,
-  `24` int(11) NOT NULL,
-  `25` int(11) NOT NULL,
-  `26` int(11) NOT NULL,
-  `27` int(11) NOT NULL,
-  `28` int(11) NOT NULL,
-  `29` int(11) NOT NULL,
-  `30` int(11) NOT NULL,
-  `31` int(11) NOT NULL
+CREATE TABLE `tracked_calories` (
+  `id` int(11) NOT NULL,
+  `created` date NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `calories` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tracked_calories`
+--
+
+INSERT INTO `tracked_calories` (`id`, `created`, `user_id`, `calories`) VALUES
+(36, '2017-02-23', 2, 20),
+(37, '2017-02-24', 2, 1400),
+(38, '2017-02-25', 2, 20),
+(39, '2017-02-28', 2, 1900),
+(40, '2017-03-03', 2, 2000),
+(41, '2017-03-16', 2, 2300),
+(42, '2017-02-23', 2, 25),
+(43, '2017-02-23', 2, 10),
+(44, '2017-02-28', 2, 12),
+(45, '2017-02-28', 2, 200),
+(46, '2017-02-28', 2, 200),
+(47, '2017-03-01', 2, 200),
+(48, '2017-03-01', 2, 200),
+(49, '2017-03-01', 2, 200),
+(50, '2017-03-01', 2, 200),
+(51, '2017-03-01', 2, 200);
 
 -- --------------------------------------------------------
 
@@ -132,9 +139,21 @@ INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`
 --
 
 --
+-- Indexes for table `blogs`
+--
+ALTER TABLE `blogs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `foods`
 --
 ALTER TABLE `foods`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tracked_calories`
+--
+ALTER TABLE `tracked_calories`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -148,10 +167,20 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `blogs`
+--
+ALTER TABLE `blogs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `foods`
 --
 ALTER TABLE `foods`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `tracked_calories`
+--
+ALTER TABLE `tracked_calories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT for table `users`
 --

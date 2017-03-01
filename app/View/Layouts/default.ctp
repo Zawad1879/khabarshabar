@@ -121,7 +121,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 							<a class="page-scroll" href="#">Exercise</a>
 						</li>
 						<li>
-							<a class="page-scroll" href="/khabarshabar/Blog/blogs">Blog</a>
+							<a class="page-scroll" href="/khabarshabar/Blogs">Blog</a>
 						</li>
 						<li>
 							<a class="page-scroll" href="#">Shop</a>

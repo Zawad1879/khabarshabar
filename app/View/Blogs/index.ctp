@@ -27,13 +27,54 @@
   </style>
 </head>
 
+<script>
+function loadPage(){
+  alert("HI");
+(document.getElementById('post_title')).innerHTML = '';
+}
+</script>
 <div class="container">
 
 <div class="panel panel-success" style="margin-top:20px;">
   <div class="panel-heading">
     <h3>User Posts</h3>
   </div>
-  <div class="panel-body">
+
+
+<div class="panel-body">
+<?php
+
+    foreach($posts as $post):
+      $date = substr($post['Blog']['created'], 8, 2);
+      $monthNum = substr($post['Blog']['created'], 5, 2);
+      $year = substr($post['Blog']['created'], 0, 4);
+      $dateObj   = DateTime::createFromFormat('!m', $monthNum);
+      $monthName = $dateObj->format('F');
+
+      $title = $post['Blog']['title'];
+      $text = $post['Blog']['text']; ?>
+
+      <div class="col-md-9 blogShort">
+        <h1><?php echo $title; ?></h1>
+        <em><?php echo $date.",".$monthName." ".$year; ?></em>
+        <article><?php echo $text; ?>
+        
+            <p></p>
+        </article>
+      </div>
+
+      <?php
+    endforeach;
+ ?>
+ <div class="col-md-12 gap10"></div>
+ </div>
+</div>
+
+
+
+
+
+  <!-- <div class="panel-body">
 
                  <div class="col-md-9 blogShort">
                      <h1>Fast Forward Academy</h1>
@@ -51,35 +92,11 @@
                          </article>
                      <a class="btn btn-blog pull-right marginBottom10" href="http://bootsnipp.com/user/snippets/2RoQ">More Information</a>
                  </div>
-                  <div class="col-md-9 blogShort">
-                     <h1>Title 2</h1>
-                     <img src="http://www.kaczmarek-photo.com/wp-content/uploads/2012/06/DSC_4073-150x150.jpg" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
-                     <article><p>
-                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                         ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only
-                         five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release
-                         of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of
-                         Lorem Ipsum.
-                         </p></article>
-                     <a class="btn btn-blog pull-right marginBottom10" href="http://bootsnipp.com/user/snippets/2RoQ">READ MORE</a>
-                 </div>
 
-                  <div class="col-md-9 blogShort">
-                     <h1>Title 3</h1>
-                     <img src="http://www.kaczmarek-photo.com/wp-content/uploads/2012/06/DSC_1681-150x150.jpg" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
-                     <article><p>
-                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                         ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only
-                         five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release
-                         of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of
-                         Lorem Ipsum.
-                         </p></article>
-                     <a class="btn btn-blog pull-right marginBottom10" href="http://bootsnipp.com/user/snippets/2RoQ">READ MORE</a>
-                 </div>
 
                <div class="col-md-12 gap10"></div>
              </div>
-           </div>
+           </div> -->
 
 
            <div class="panel panel-success" style="margin-top:20px;">
@@ -94,29 +111,41 @@
                  ); ?>
 
                  <div class="form-group">
-                   <label for="" class="col-sm-3 control-label">Title*</label>
+                   <label for="" class="col-sm-1 control-label">Title*</label>
                    <!-- <div class="col-sm-3"> -->
                      <!-- <input type="text" class="form-control" id="" name="weight" placeholder="Weight In Kg" required> -->
                      <?php echo $this->Form->input('post_title',array('label' => '','required' => true,
                                                    'class' => 'form-control',
                                                    'div' => array(
-                                                       'class' => 'col-sm-9',
+                                                       'class' => 'col-sm-11',
                                                         ),
                                                    'placeholder' => '')); ?>
                   </div>
 
                   <div class="form-group">
-                   <label for="" class="col-sm-3 control-label">Text*</label>
+                   <label for="" class="col-sm-1 control-label">Text*</label>
                    <!-- <div class="col-sm-3"> -->
                      <!-- <input type="text" class="form-control" id="" name="weight" placeholder="Weight In Kg" required> -->
                      <?php echo $this->Form->input('post_text',array('label' => '','required' => true,
                                                    'type' => 'textarea',
                                                    'class' => 'form-control',
                                                    'div' => array(
-                                                       'class' => 'col-sm-9',
+                                                       'class' => 'col-sm-11',
                                                         ),
                                                    'placeholder' => '')); ?>
-            </div>
+                  </div>
+                  <div class="form-group">
+                  <div class="col-sm-1 control-label"></div>
+                  <?php echo $this->Form->end(array(
+                      'label' => ('Submit'),
+                      'class' => 'btn btn-block btn-danger',
+                      'div' => array(
+                          'class' => 'col-sm-11',
+                           ),
+                       'before' => '<div class="controls">',
+                       'after' => '</div>'
+                  )); ?>
+                  </div>
 
 
 

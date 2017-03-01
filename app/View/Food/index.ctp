@@ -40,15 +40,6 @@
           <h3>Homepage</h3>
         </div>
           <div class="panel-body">
-          <!-- <?php
-            // echo $this->Html->link('Search for food',
-            // array('controller' => 'food', 'action'=>'search'));
-          ?> -->
-
-          <!-- <?php
-            // echo $this->Html->link('Want to lose weight?',
-            // array('controller' => 'food', 'action'=>'calculate'));
-          ?> -->
 
           <?php echo $this->Form->create('', array(
               'inputDefaults' => array(

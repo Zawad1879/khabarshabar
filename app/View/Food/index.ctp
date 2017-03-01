@@ -35,14 +35,14 @@
 <div class="container">
   <article class="row">
       <section class="col-lg-12">
-        <div class="panel panel-success">
+        <div class="panel panel-success" style="margin-top:20px;">
         <div class="panel-heading">
           <h3>Homepage</h3>
         </div>
           <div class="panel-body">
           <!-- <?php
-            echo $this->Html->link('Search for food',
-            array('controller' => 'food', 'action'=>'search'));
+            // echo $this->Html->link('Search for food',
+            // array('controller' => 'food', 'action'=>'search'));
           ?> -->
 
           <!-- <?php
@@ -177,24 +177,7 @@
                       'label' => ''
 
                   )); ?>
-                  <!-- </div> -->
-                  <!-- <div class="col-sm-2"> -->
-                    <!-- <select class="form-control" name="inches" required>
-                          <option value="" selected>Inches</option>
-                          <option value="0">00</option>
-                          <option value="1">01</option>
-                      <option value="2">02</option>
-                      <option value="3">03</option>
-                      <option value="4">04</option>
-                      <option value="5">05</option>
-                      <option value="6">06</option>
-                      <option value="7">07</option>
-                      <option value="8">08</option>
-                      <option value="9">09</option>
-                      <option value="10">10</option>
-                      <option value="11">11</option>
-                      <option value="12">12</option>
-                    </select> -->
+
 
                     <?php echo $this->Form->input('inches', array(
                         'options' => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
@@ -326,14 +309,23 @@
 
 
 <?php if (AuthComponent::user('id')){ ?>
+<div class="container">
+<div class="col-sm-2"></div>
+<div class="col-sm-8" style="align:center;">
+
+<div class="panel panel-success" style="margin-top:10px;" >
+<div class="panel-heading" style="height:70px; font-size:30px; text-align: center;">Your Monthly Progress</div>
 <div class="row" >
   <div id="viz" style="width:600px; height:400px; text-align: center; margin-left: auto; margin-right: auto;"></div>
 </div>
-
-<div class="container">
-<div class="row">
-  <p>Progress</p>
 </div>
+
+</div>
+<div class="col-sm-2"></div>
+</div>
+<div class="container">
+
+
 <div class="row">
 <script>
   sample_data = getData();
@@ -356,4 +348,5 @@
 </script>
 <?php } ?>
 </div>
+
 </div>

@@ -136,8 +136,9 @@ function include(arr,obj) {
 
 
 <body onload="loadPage()">
-<div class="container-fluid">
-
+<div class="container-fluid" >
+<div class="panel panel-success" style="margin-top:20px;" >
+   <div class="panel-heading" style="height:70px; font-size:30px; text-align: center;">Your Diet</div>
 <h3>To lose 1kg per day, your daily calorie limit should be
   <?php
     if ($calorie_intake_for_losing_one_kg_daily){
@@ -236,6 +237,6 @@ Your calorie intake limit per day should be
   <h3 class="text-center" id="dinner_limit">Calorie Limit: </h3>
 </div>
 
-
+</div>
 </div>
 </body>

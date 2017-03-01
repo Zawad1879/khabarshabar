@@ -62,6 +62,7 @@ class FoodController extends AppController{
 
 
     if ($this->request->is('post')){
+      //$current_weight = $this->request->data['Food']['weight'];
       $current_weight = $this->request->data['Food']['current_weight'];
       $lose_weight = $this->request->data['Food']['lose_weight'];
       $desired_weight = $current_weight - $lose_weight;

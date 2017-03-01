@@ -67,3 +67,6 @@ a {
 .navbar-text > a:hover{
 	color: white;
 }
+.form-group input[type='radio']{
+	margin : 10px;
+}

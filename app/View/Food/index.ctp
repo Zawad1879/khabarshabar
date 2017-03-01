@@ -32,74 +32,74 @@
 
 
 </head>
-  <div class="container">
-    <article class="row">
-        <section class="col-lg-12">
-          <div class="panel panel-success">
-          <div class="panel-heading">
-            <h3>Homepage</h3>
-          </div>
-            <div class="panel-body">
-            <?php
-              echo $this->Html->link('Search for food',
-              array('controller' => 'food', 'action'=>'search'));
-            ?>
+<div class="container">
+  <article class="row">
+      <section class="col-lg-12">
+        <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3>Homepage</h3>
+        </div>
+          <div class="panel-body">
+          <!-- <?php
+            echo $this->Html->link('Search for food',
+            array('controller' => 'food', 'action'=>'search'));
+          ?> -->
 
-            <?php
-              echo $this->Html->link('Want to lose weight?',
-              array('controller' => 'food', 'action'=>'calculate'));
-            ?>
-           
-            <?php echo $this->Form->create('', array(
-                'inputDefaults' => array(
-                  'div' => 'form-group',
-                  'label' => false,
-                  'wrapInput' => false,
-                  'class' => 'form-control'
-                ),
-                'class' => 'well form-horizontal'
-              )); ?>
+          <!-- <?php
+            // echo $this->Html->link('Want to lose weight?',
+            // array('controller' => 'food', 'action'=>'calculate'));
+          ?> -->
 
-            <p>The number of calories I have consumed today</p>
-        
-            <?php echo $this->Form->input('enter_calories',['div'=> 'col-sm-3','placeholder' => 'Enter Calories' ,'required' => true]);?>
-    
-            <?php echo $this->Form->end(array(
-                'label' => ('Save Calories'),
-                'class' => 'btn btn-success',
-                'div' => array(
-                    'class' => 'control-group',
-                    ),
-                'before' => '<div class="controls">',
-                'after' => '</div>'
-            ));?>
+          <?php echo $this->Form->create('', array(
+              'inputDefaults' => array(
+                'div' => 'form-group',
+                'label' => false,
+                'wrapInput' => false,
+                'class' => 'form-control'
+              ),
+              'class' => 'well form-horizontal'
+            )); ?>
 
-            
+          <p>The number of calories I have consumed today</p>
 
-            <?php
-            //if($progress != ''){
-            foreach($progress as $prog):
-              $monthNum = substr($prog['TrackedCalorie']['created'], 5, 2);
-              $dateObj   = DateTime::createFromFormat('!m', $monthNum);
-              $monthName = $dateObj->format('F');
+          <?php echo $this->Form->input('enter_calories',array('div'=> 'col-sm-3','placeholder' => 'Enter Calories' ,'required' => true));?>
 
-              $day = substr($prog['TrackedCalorie']['created'], 8, 2);
-              $calories = $prog['TrackedCalorie']['calories']?>
-              <script>
-              //alert (<?php echo json_encode($day); ?>);
-              var month = <?php echo json_encode($monthName); ?>;
-              var day = <?php echo json_encode($day); ?>;
-              var calories = <?php echo json_encode($calories); ?>;
-              appendToArray(month, day, calories );
-              console.log(getData);
-              </script>
+          <?php echo $this->Form->end(array(
+              'label' => ('Save Calories'),
+              'class' => 'btn btn-success',
+              'div' => array(
+                  'class' => 'control-group',
+                  ),
+              'before' => '<div class="controls">',
+              'after' => '</div>'
+          ));?>
 
-            <?php endforeach;?>
-             </div> 
-          </div>
-      </section>
-    </article>
-  </div>
+
+
+          <?php
+          //if($progress != ''){
+          foreach($progress as $prog):
+            $monthNum = substr($prog['TrackedCalorie']['created'], 5, 2);
+            $dateObj   = DateTime::createFromFormat('!m', $monthNum);
+            $monthName = $dateObj->format('F');
+
+            $day = substr($prog['TrackedCalorie']['created'], 8, 2);
+            $calories = $prog['TrackedCalorie']['calories']?>
+            <script>
+            //alert (<?php echo json_encode($day); ?>);
+            var month = <?php echo json_encode($monthName); ?>;
+            var day = <?php echo json_encode($day); ?>;
+            var calories = <?php echo json_encode($calories); ?>;
+            appendToArray(month, day, calories );
+            console.log(getData);
+            </script>
+
+          <?php endforeach;?>
+           </div>
+        </div>
+    </section>
+  </article>
+</div>
 
 <!-- Asiks code -->
 
@@ -112,38 +112,74 @@
               <h3>Diet Planer</h3>
             </div>
             <div class="panel-body">
-              <form class="form-horizontal" action="" method="post" role="form">
+
+                <?php echo $this->Form->create('', array(
+
+                  'url'   => array(
+                            'controller' => 'Food','action' => 'calculate'
+                             ),
+                  'class' => 'well form-horizontal'
+                )); ?>
+
+
                 <div class="form-group">
                     <label for="" class="col-sm-3 control-label">My Weight*</label>
-                    <div class="col-sm-3">
-                      <input type="text" class="form-control" id="" name="weight" placeholder="Weight In Kg" required>
-                    </div>
+                    <!-- <div class="col-sm-3"> -->
+                      <!-- <input type="text" class="form-control" id="" name="weight" placeholder="Weight In Kg" required> -->
+                      <?php echo $this->Form->input('current_weight',array('label' => '','required' => true,
+                                                    'class' => 'form-control',
+                                                    'div' => array(
+                                                        'class' => 'col-sm-3',
+                                                         ),
+                                                    'placeholder' => 'Weight In Kg')); ?>
+                    <!-- </div> -->
 
                     <label for="" class="col-sm-3 control-label">I Would Like to Lose*</label>
-                    <div class="col-sm-3">
-                      <input type="text" class="form-control" id="" name="lose_weight" placeholder="Weight In Kg" required>
-                    </div>
+
+                      <?php echo $this->Form->input('lose_weight',array('label' => '','required' => true,
+                                                    'class' => 'form-control',
+                                                    'div' => array(
+                                                        'class' => 'col-sm-3',
+                                                         ),
+                                                    'placeholder' => 'Lose kgs')); ?>
+                    <!-- </div> -->
                 </div>
                 <div class="form-group">
                     <label for="" class="col-sm-3 control-label">Within </label>
-                    <div class="col-sm-3">
-                      <input type="text" class="form-control" id="" name="weeks" placeholder="Weeks" required>
-                    </div>
+
+                      <!-- <input type="text" class="form-control" id="" name="weeks" placeholder="Weeks" required> -->
+                      <?php echo $this->Form->input('weeks',array('label' => '','required' => true,
+                                                    'class' => 'form-control',
+                                                    'div' => array(
+                                                        'class' => 'col-sm-3',
+                                                         ),
+                                                    'placeholder' => 'Weeks')); ?>
+
                 </div>
                 <div class="form-group">
                     <label for="" class="col-sm-3 control-label">Current Height Is</label>
-                    <div class="col-sm-2">
-                        <select class="form-control" name="feet" required>
+                    <!-- <div class="col-sm-2"> -->
+                        <!-- <select class="form-control" name="feet" required>
                           <option value="" selected>Feet</option>
                       <option value="3">03</option>
                       <option value="4">04</option>
                       <option value="5">05</option>
                       <option value="6">06</option>
                       <option value="7">07</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-2">
-                    <select class="form-control" name="inches" required>
+                    </select> -->
+                  <?php echo $this->Form->input('feet', array(
+                      'options' => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13),
+                      'empty' => 'Feet','required' => true,
+                      'class' => 'form-control',
+                      'div' => array(
+                          'class' => 'col-sm-2',
+                           ),
+                      'label' => ''
+
+                  )); ?>
+                  <!-- </div> -->
+                  <!-- <div class="col-sm-2"> -->
+                    <!-- <select class="form-control" name="inches" required>
                           <option value="" selected>Inches</option>
                           <option value="0">00</option>
                           <option value="1">01</option>
@@ -158,42 +194,84 @@
                       <option value="10">10</option>
                       <option value="11">11</option>
                       <option value="12">12</option>
-                    </select>
-                    </div>
+                    </select> -->
+
+                    <?php echo $this->Form->input('inches', array(
+                        'options' => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+                        'empty' => 'Inches','required' => true,
+                        'class' => 'form-control',
+                        'div' => array(
+                            'class' => 'col-sm-2',
+                             ),
+                        'label' => ''
+
+                    )); ?>
+                    <!-- </div> -->
                 </div>
                 <div class="form-group">
                     <label for="" class="col-sm-3 control-label">My Gender</label>
-                    <div class="col-sm-2">
-                        <select class="form-control" name="gender" required>
+                     <div class="col-sm-4">
+                        <!-- <select class="form-control" name="gender" required>
                           <option value="" selected>Gender</option>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
-                    </select>
-                  </div>
+                    </select> -->
+
+
+                    <?php $options = array('M' => 'Male', 'F' => 'Female');
+                    $attributes = array('legend' => false,'required' => true, 'class' => '',); ?>
+
+                    <?php echo $this->Form->radio('gender',$options, $attributes); ?>
+
+                   </div>
                 </div>
                 <div class="form-group">
                     <label for="" class="col-sm-3 control-label">My Age Is</label>
-                    <div class="col-sm-3">
-                      <input type="text" class="form-control" id="" name="weeks" placeholder="Years" required>
-                    </div>
+                    <!-- <div class="col-sm-3"> -->
+                      <!-- <input type="text" class="form-control" id="" name="weeks" placeholder="Years" required> -->
+                      <?php echo $this->Form->input('current_age',array('label' => '','required' => true,
+                                                    'class' => 'form-control',
+                                                    'div' => array(
+                                                        'class' => 'col-sm-3',
+                                                         ),
+                                                    'placeholder' => 'Age')); ?>
+                    <!-- </div> -->
                 </div>
                 <div class="form-group">
                     <label for="" class="col-sm-3 control-label">Lifestyle</label>
                     <div class="col-sm-3">
-                        <select class="form-control" name="lifestyle" required>
+                        <!-- <select class="form-control" name="lifestyle" required>
                           <option value="" selected>Choose One</option>
                       <option value="3">03</option>
-                      <option value="4">04</option>
-                    </select>
+                      <option value="4">04</opti3.on>
+                    </select> -->
+
+                    <?php echo $this->Form->input('lifestyle', array(
+        'options' => array("sedentary" => "Sedentary (little or no exercise)", "light_activity"=>"Light activity (light exercise/sports 1-3 days/week))",
+                           "moderate_activity"=>"Moderate activity (moderate exercise/sports 3-5 days/week)",
+                           "very_active"=>"Very active (hard exercise/sports 6-7 days a week)",
+                           "extra_active"=>"Extra active (very hard exercise/sports and physical job)"),
+        'empty' => '(choose one)','required' => true, 'label' => '','class' => 'form-control',
+)); ?>
                   </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label"></label>
-                    <div class="col-sm-8">
-                      <input type="submit" class="btn btn-block btn-danger" name="submit_diet_plan" value="Find My Diet">
-                    </div>
+                    <!-- <div class="col-sm-8"> -->
+                      <!-- <input type="submit" class="btn btn-block btn-danger" name="submit_diet_plan" value="Find My Diet"> -->
+                      <?php echo $this->Form->end(array(
+                          'label' => ('Find My Diet'),
+                          'class' => 'btn btn-block btn-danger',
+                          'div' => array(
+                              'class' => 'col-sm-8',
+                               ),
+                           'before' => '<div class="controls">',
+                           'after' => '</div>'
+                      )); ?>
+                    <!-- </div> -->
                   </div>
               </form>
+            <!-- </form> -->
             </div>
         </div>
 
@@ -260,7 +338,7 @@
 <script>
   sample_data = getData();
   if(sample_data.length != 0){
-    console.log(sample_data);
+    //console.log(sample_data);
 
   var visualization = d3plus.viz()
     .container("#viz")  // container DIV to hold the visualization

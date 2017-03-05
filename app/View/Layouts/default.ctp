@@ -66,7 +66,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 					</div>
 					<div class="col-lg-4" >
 						<div class="text-center">
-							<img src="img/logo.png" width="70%" >
+							<img src="http://localhost/khabarshabar/img/logo.png" width="70%" >
 						</div>
 					</div>
 					<div class="col-lg-4">

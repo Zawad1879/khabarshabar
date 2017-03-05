@@ -1,10 +1,12 @@
 body{
+	/*background-color: #F2F2F2;*/
 	background: url(img/1.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
+	
 }
 /*h4{
 	color: #0080AF;
@@ -13,9 +15,8 @@ body{
 	text-align: center;
 	font-family: 'Sansita', sans-serif;
 }*/
-
 .top-header{
-	background: rgba(0, 0, 0, 0.9);
+	background: rgba(0, 0, 0, 0.7);
 }
 .navbar {
     margin-bottom: 0;
@@ -24,7 +25,7 @@ body{
 
 }
 .navbar-default {
-  background-color: #0080AF;
+  background-color: #FAFB3D;
  }
 
 a {
@@ -34,7 +35,7 @@ a {
 .navbar-default .navbar-nav>.active>a:hover,
 .navbar-default .navbar-nav>li>a:hover,
 .navbar-default .navbar-nav>li>a:focus {
-	background-color: #B0C884;
+	background-color: #FFFF00;
 /*	padding-left: 10px;*/
 }
 .navbar-default .navbar-nav>li>a {
@@ -73,31 +74,4 @@ a {
 
 .input-group-btn{
 	height:34px;
-}
-
-.blogCard{
-
-	min-height: 242px;
-	max-height: 242px;
-	line-height: 18px;
-	overflow: hidden;
-}
-
-.blogcard p{
-	margin: 0 0 10px;
--webkit-line-clamp: 5;
--webkit-box-orient: vertical;
-display: -webkit-box;
-overflow: hidden;
-}
-
-.blogcard .btn-primary {
-	position: absolute;
-	bottom: 32px;
-}
-
-
-.btn .btn-primary{
-	position: absolute;
-	bottom: 32px;
 }

@@ -20,7 +20,9 @@ class BlogsController extends AppController{
     }
 
 
-    $posts = $this->Blog->find('all');
+    $posts = $this->Blog->find('all',array('options' => array('recursive' => 1)));
+    // print_r($posts);
+    // die();
     $this->set('posts',$posts);
 
 

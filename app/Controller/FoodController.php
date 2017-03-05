@@ -100,12 +100,12 @@ class FoodController extends AppController{
         $activity_factor = 1.9;
       }
 
-      $calorie_intake_for_losing_one_kg_daily = (((10 * $current_weight) + (6.25 * $current_height) - (5 * $current_age) + $gender_factor) * $activity_factor)-1000;
-      $calorie_intake_after_reaching_goal = ((10 * $desired_weight) + (6.25 * $current_height) - (5 * $current_age) + $gender_factor) * $activity_factor;
+      $calorie_intake_for_maintaining_weight = (((10 * $current_weight) + (6.25 * $current_height) - (5 * $current_age) + $gender_factor) * $activity_factor);
+      //$calorie_intake_after_reaching_goal = ((10 * $desired_weight) + (6.25 * $current_height) - (5 * $current_age) + $gender_factor) * $activity_factor;
 
-      $breakfast_calories = ($calorie_intake_after_reaching_goal * $breakfast_ratio)/3.09;
-      $lunch_calories = ($calorie_intake_after_reaching_goal * $lunch_ratio)/3.09;
-      $dinner_calories = ($calorie_intake_after_reaching_goal * $dinner_ratio)/3.09;
+      // $breakfast_calories = ($calorie_intake_after_reaching_goal * $breakfast_ratio)/3.09;
+      // $lunch_calories = ($calorie_intake_after_reaching_goal * $lunch_ratio)/3.09;
+      // $dinner_calories = ($calorie_intake_after_reaching_goal * $dinner_ratio)/3.09;
 
       $this->set('calorie_intake_for_losing_one_kg_daily',$calorie_intake_for_losing_one_kg_daily);
       // $this->Session->write('calorie_intake_for_losing_one_kg_dai', $calorie_intake_for_losing_one_kg_daily);
@@ -118,11 +118,14 @@ class FoodController extends AppController{
       // $this->set('breakfast_calories', $breakfast_calories);
       // $this->set('lunch_calories', $lunch_calories);
       // $this->set('dinner_calories', $dinner_calories);
-      return $this->redirect(array('action' => 'dietPlan'));
+      return $this->redirect(array('action' => 'dietPlan',$calorie_intake_for_losing_one_kg_daily));
     }
 	}
 
-  public function dietPlan(){
+  public function dietPlan($calorie_intake_for_losing_one_kg_daily){
+    if(isset($calorie_intake_for_losing_one_kg_daily)){
+      $this->set('foods',$calorie_intake_for_losing_one_kg_daily);
+    }
       $this->set('foods',$this->Food->find('all'));
   }
 

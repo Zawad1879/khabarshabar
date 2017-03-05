@@ -35,13 +35,14 @@ function loadPage(){
 </script>
 <div class="container">
 
-<div class="panel panel-success" style="margin-top:20px;">
+<!-- <div class="panel panel-success" style="margin-top:20px;">
   <div class="panel-heading">
     <h3>User Posts</h3>
-  </div>
+  </div> -->
 
 
-<div class="panel-body">
+<!-- <div class="panel-body"> -->
+<div class="container">
 <?php
 
     foreach($posts as $post):
@@ -54,20 +55,42 @@ function loadPage(){
       $title = $post['Blog']['title'];
       $text = $post['Blog']['text']; ?>
 
-      <div class="col-md-9 blogShort">
+      <!-- <div class="col-md-9 blogShort">
         <h1><?php echo $title; ?></h1>
         <em><?php echo $date.",".$monthName." ".$year; ?></em>
         <article><?php echo $text; ?>
-        
+
             <p></p>
         </article>
-      </div>
+      </div> -->
+
+  <div class="col-md-3">
+
+<article>
+<div class="panel panel-success" style="margin-top:20px;">
+  <div class="panel-body" >
+      <div class="card blogCard">
+  <!-- <img class="cardblogCard-img-top" src="..." alt="Card image cap"> -->
+  <div class="card-block">
+    <h4 class="card-title"><b><?php echo $title; ?></b></h4>
+    <em><?php echo $post['User']['username'] ?></em></br>
+    <em><?php echo $date.",".$monthName." ".$year; ?></em>
+    <p class="card-text"> <?php echo $text; ?></p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+</div>
+</div>
+</article>
+</div>
+
 
       <?php
     endforeach;
- ?>
+    ?>
+    </div>
  <div class="col-md-12 gap10"></div>
- </div>
+ <!-- </div> -->
 </div>
 
 

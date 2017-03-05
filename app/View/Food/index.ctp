@@ -255,7 +255,7 @@
               <aside class="col-md-4">
               	<div class="panel panel-danger">
               		<div class="panel-heading">
-              			<h3>Blog</h3>
+              			<h3>Recent posts</h3>
               		</div>
               		<div class="list-group">
               				<a href="#" class="list-group-item">
@@ -287,7 +287,7 @@
     </article>
 
   </div>
-  <div style="width:50px; height:100px;"></div>
+
 
 </div>
 
@@ -302,7 +302,7 @@
 <?php if (AuthComponent::user('id')){ ?>
 <div class="container">
 <div class="col-sm-2"></div>
-<div class="col-sm-8" style="align:center;">
+<div class="col-sm-12" style="align:center;">
 
 <div class="panel panel-success" style="margin-top:10px;" >
 <div class="panel-heading" style="height:70px; font-size:30px; text-align: center;">Your Monthly Progress</div>
@@ -341,3 +341,4 @@
 </div>
 
 </div>
+<div style="width:50px; height:80px;"></div>

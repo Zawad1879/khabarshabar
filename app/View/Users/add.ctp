@@ -62,11 +62,11 @@
 
   </script>
   <style>
-  body {
+  /*body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #ddd;
-}
+}*/
 
 .form-signin {
   max-width: 330px;
@@ -121,7 +121,7 @@
 }
 
 
-.container {
+.container1 {
   border-top: 2px solid #aaa;
   box-shadow:  0 2px 10px rgba(0,0,0,0.8);
   width:288px;
@@ -135,7 +135,7 @@
   perspective: 800px;
 }
 
-.container form {
+.container1 form {
   width:100%;
   height:100%;
   position:absolute;
@@ -160,7 +160,7 @@
 }
 
 
-.container.flipped .form-signin{
+.container1 .flipped .form-signin{
 
   opacity:0;
 
@@ -174,7 +174,7 @@
   transform:rotateY(-180deg);
 }
 
-.container.flipped #recover{
+.container1 .flipped #recover{
 
   opacity:1;
 
@@ -375,10 +375,10 @@
 }
 </style>
 </head>
-
+<div style="width:50px; height:80px;"></div>
 <div class="container">
 	<div class="row">
-
+    <div class="container1">
     	<!-- <div class="container" id="formContainer"> -->
 
 
@@ -423,6 +423,7 @@
           </form>
 
         <!-- </div> <!-- /container --> -->
-
+      </div>
 	</div>
 </div>
+<div style="width:50px; height:80px;"></div>

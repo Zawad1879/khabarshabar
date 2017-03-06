@@ -1,5 +1,9 @@
 <?php $this->extend('/Layouts/default'); ?>
 <head>
+
+
+<!-- <script src="html5shiv.js"></script>
+<script src="flip-carousel.js"></script> -->
   <style>
   .blogShort{ border-bottom:1px solid #ddd;}
 .add{background: #333; padding: 10%; height: 300px;}
@@ -83,6 +87,16 @@ function loadPage(){
 </div>
 </article>
 </div>
+
+
+<script>
+	$('article').flipcarousel({
+		pagination : false,
+		loader : true,
+		itemsperpage: 3,
+		randomizer: 0.7
+	});
+</script>
 
 
       <?php

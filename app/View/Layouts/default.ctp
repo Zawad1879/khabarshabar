@@ -22,6 +22,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <head>
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet">
+	<!-- <script src="jquery-1.8.1.min.js"></script>
+	<script src="html5shiv.js"></script>
+	<script src="flip-carousel.js"></script>
+	<link href="foundation-icons.css" rel="stylesheet">
+	<link href="flip-carousel.css" rel="stylesheet"> -->
 	<?php echo $this->Html->charset(); ?>
 	<title>
 		<?php echo $cakeDescription ?>:

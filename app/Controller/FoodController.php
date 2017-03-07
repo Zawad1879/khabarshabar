@@ -107,7 +107,7 @@ class FoodController extends AppController{
       // $lunch_calories = ($calorie_intake_after_reaching_goal * $lunch_ratio)/3.09;
       // $dinner_calories = ($calorie_intake_after_reaching_goal * $dinner_ratio)/3.09;
 
-      $this->set('calorie_intake_for_losing_one_kg_daily',$calorie_intake_for_losing_one_kg_daily);
+      //$this->set('calorie_intake_for_losing_one_kg_daily',$calorie_intake_for_losing_one_kg_daily);
       // $this->Session->write('calorie_intake_for_losing_one_kg_dai', $calorie_intake_for_losing_one_kg_daily);
       // $this->Session->write('calorie_intake_after_reaching_goal', $calorie_intake_after_reaching_goal);
       // $this->Session->write('breakfast_calories', $breakfast_calories);
@@ -118,13 +118,13 @@ class FoodController extends AppController{
       // $this->set('breakfast_calories', $breakfast_calories);
       // $this->set('lunch_calories', $lunch_calories);
       // $this->set('dinner_calories', $dinner_calories);
-      return $this->redirect(array('action' => 'dietPlan',$calorie_intake_for_losing_one_kg_daily));
+      return $this->redirect(array('action' => 'dietPlan',$calorie_intake_for_maintaining_weight));
     }
 	}
 
-  public function dietPlan($calorie_intake_for_losing_one_kg_daily){
-    if(isset($calorie_intake_for_losing_one_kg_daily)){
-      $this->set('foods',$calorie_intake_for_losing_one_kg_daily);
+  public function dietPlan($calorie_intake_for_maintaining_weight){
+    if(isset($calorie_intake_for_maintaining_weight)){
+      $this->set('calorie_intake_for_maintaining_weight',$calorie_intake_for_maintaining_weight);
     }
       $this->set('foods',$this->Food->find('all'));
   }

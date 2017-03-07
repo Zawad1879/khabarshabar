@@ -2,6 +2,7 @@
 $calorie_intake_for_losing_one_kg_daily = $this->Session->read('calorie_intake_for_losing_one_kg_daily');
 $calorie_intake_after_reaching_goal = $this->Session->read('calorie_intake_after_reaching_goal');
 // $breakfast_calories = $this->Session->read('breakfast_calories');
+
 $breakfast_calories =600;
 //$lunch_calories = $this->Session->read('lunch_calories');
 $lunch_calories = 500;
@@ -138,11 +139,11 @@ function include(arr,obj) {
 <body onload="loadPage()">
 <div class="container-fluid" >
 <div class="panel panel-success" style="margin-top:20px;" >
-   <div class="panel-heading" style="height:70px; font-size:30px; text-align: center;">Your Diet</div>
-<h3>To lose 1kg per day, your daily calorie limit should be
+   <!-- <div class="panel-heading" style="height:70px; font-size:30px; text-align: center;">Your Diet</div> -->
+<h3>In order to maintain your weight, you should consume a total amount of
   <?php
-    if ($calorie_intake_for_losing_one_kg_daily){
-      echo intval($calorie_intake_for_losing_one_kg_daily);
+    if ($calorie_intake_for_maintaining_weight){
+      echo intval($calorie_intake_for_maintaining_weight);
     } ?>
   calories.
 </h3>
@@ -156,8 +157,8 @@ Your calorie intake limit per day should be
  calories in order to maintain weight after you reach your goal.
 </h3>
 
-<!-- The breakfast, lunch and dinner tables -->
 
+<!-- The breakfast, lunch and dinner tables -->
 <div class="row table-responsive">
 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
   <h3 class="text-center">Breakfast</h3>

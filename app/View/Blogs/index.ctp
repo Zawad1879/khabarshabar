@@ -1,6 +1,6 @@
 <?php $this->extend('/Layouts/default'); ?>
 <head>
-
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 
 <!-- <script src="html5shiv.js"></script>
 <script src="flip-carousel.js"></script> -->
@@ -32,24 +32,69 @@
 </head>
 
 <script>
+var startIndex = 0;
+var stopIndex = 0;
+var rowCardLimit = 3;
+var posts = [];
+
 function loadPage(){
   alert("HI");
 (document.getElementById('post_title')).innerHTML = '';
 }
+
+function getStartIndex(){
+  return startIndex;
+}
+
+function getStopIndex(){
+  return stopIndex;
+}
+
+function getRowLimit(){
+  return rowCardLimit;
+}
+
+function setStartIndex(index){
+  startIndex = index;
+}
+
+function setStopIndex(index){
+  stopIndex = index;
+}
+
+function getObjects(){
+  arr = [];
+  var i;
+  for(i = getStartIndex(); i <= getStopIndex(); i++){
+    arr.push(posts[i]);
+  }
+  return arr;
+}
 </script>
+
 <div class="container">
 
 <!-- <div class="panel panel-success" style="margin-top:20px;">
   <div class="panel-heading">
     <h3>User Posts</h3>
   </div> -->
-
-
 <!-- <div class="panel-body"> -->
 <div class="container">
+  <h1 style="font-family: 'Lobster', cursive;" class="text-center">Pocket Stories</h1>
 <?php
 
-    foreach($posts as $post):
+    foreach($posts as $post): ?>
+      <script>
+
+      posts.push(<?php echo json_encode($post); ?>);
+      if(posts.length > 0 && getStopIndex() < getRowLimit()){
+        setStopIndex(posts.length - 1);
+      }
+
+      //console.log(arr[arr.length - 1].User.username);
+      </script>
+      <?php
+
       $date = substr($post['Blog']['created'], 8, 2);
       $monthNum = substr($post['Blog']['created'], 5, 2);
       $year = substr($post['Blog']['created'], 0, 4);
@@ -68,72 +113,36 @@ function loadPage(){
         </article>
       </div> -->
 
-  <div class="col-md-3">
-
-<article>
-<div class="panel panel-success" style="margin-top:20px;">
-  <div class="panel-body" >
-      <div class="card blogCard">
-  <!-- <img class="cardblogCard-img-top" src="..." alt="Card image cap"> -->
-  <div class="card-block">
-    <h4 class="card-title"><b><?php echo $title; ?></b></h4>
-    <em><?php echo $post['User']['username'] ?></em></br>
-    <em><?php echo $date.",".$monthName." ".$year; ?></em>
-    <p class="card-text"> <?php echo $text; ?></p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="col-md-3">
+  <div class="panel panel-success" style="margin-top:20px;">
+    <div class="panel-body" >
+        <div class="card blogCard">
+    <div class="card-block">
+      <div class="heading" style="border-bottom: 1px solid lightgrey;">
+      <h4 class="card-title"><b><?php echo $title; ?></b></h4>
+      <em><?php echo $post['User']['username'] ?></em></br>
+      <em ><?php echo $date.",".$monthName." ".$year; ?></em>
+    </div>
+      <p class="card-text"> <?php echo $text; ?></p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+  </div>
   </div>
 </div>
-</div>
-</div>
-</article>
-</div>
-
-
-<script>
-	$('article').flipcarousel({
-		pagination : false,
-		loader : true,
-		itemsperpage: 3,
-		randomizer: 0.7
-	});
-</script>
-
 
       <?php
     endforeach;
     ?>
-    </div>
- <div class="col-md-12 gap10"></div>
- <!-- </div> -->
+
+
+
 </div>
 
 
 
-
-
-  <!-- <div class="panel-body">
-
-                 <div class="col-md-9 blogShort">
-                     <h1>Fast Forward Academy</h1>
-                     <img src="http://www.kaczmarek-photo.com/wp-content/uploads/2012/06/guinnes-150x150.jpg" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
-
-                         <em>This snippet use <a href="http://bootsnipp.com/snippets/featured/sexy-sidebar-navigation" target="_blank">Sexy Sidebar Navigation</a></em>
-                     <article><p>
-                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                         ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only
-                         five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release
-                         of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of
-                         Lorem Ipsum.
-                         </p>
-                             <p></p>
-                         </article>
-                     <a class="btn btn-blog pull-right marginBottom10" href="http://bootsnipp.com/user/snippets/2RoQ">More Information</a>
-                 </div>
-
-
-               <div class="col-md-12 gap10"></div>
-             </div>
-           </div> -->
+ <div class="col-md-12 gap10"></div>
+ <!-- </div> -->
 
 
            <div class="panel panel-success" style="margin-top:20px;">
@@ -192,3 +201,4 @@ function loadPage(){
 
 
          </div>
+</div>

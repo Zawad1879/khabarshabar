@@ -20,6 +20,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <!DOCTYPE html>
 <html>
 <head>
+	<script
+  src="https://code.jquery.com/jquery-1.11.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet">
 	<!-- <script src="jquery-1.8.1.min.js"></script>
@@ -44,23 +48,66 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->fetch('fonts');
 		echo $this->Html->css('style');
 	?>
+
+	<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "300px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
 </head>
 <body>
 
+	<div id="mySidenav" style="z-index:2;" class="sidenav">
 
+
+		<div class="sideNavHeader" style="height:49%; border-bottom: 1px solid white; background-color:#f4c242; background: url(img/navbarHeaderImage.jpg);">
+	  	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			<h1 class="text-center" style="color: white;">Food Bank</h1>
+			<div class="sandbox_search">
+            <div class="clear_search"><span class="glyphicon glyphicon-remove"></span></div>
+            <input class="sb_search_input search-query form-control ignoreEnforceFocus" placeholder="Search database..." type="text">
+      </div>
+
+			<div class="menuButtons" >
+			<div style="float: left; width: 50%;">
+			<button id="BreakfastButton" class="btn btn-primary">Breakfast</button>
+			<button id="LunchButton" class="btn btn-primary">Lunch</button>
+			<button id="DinnerButton" class="btn btn-primary">Dinner</button>
+			</div>
+			<div style="float: left; width: 50%;">
+				<button id="AllFoodsButton" class="btn btn-primary">All foods</button>
+				<button id="FavouritesButton" class="btn btn-primary">Favourites
+				<span class="glyphicon glyphicon-heart"></span></button>
+			</div>
+			</div>
+		</div>
+
+		<div class="navbarBody">
+		  <a href="#">About</a>
+		  <a href="#">Services</a>
+		  <a href="#">Clients</a>
+		  <a href="#">Contact</a>
+		</div>
+	</div>
 
 
 	<!-- Ashik's code starts here -->
 
 
-	<div class="top-header">
+	<div class="top-header" >
+		<span id="drawerIcon" style="font-size:30px;cursor:pointer; position:fixed; color:white; z-index:1;" onclick="openNav()">&#9776;</span>
 				<div class="container">
+
 					<div class="col-lg-4">
 						<div class="col-md-10">
 						<form action="#" role="form">
 								<div class="panel-body ">
 									<div class="input-group">
-									<input type="search" name="search" class="form-control" placeholder="Search">
+									<input style="z-index:0;" type="search" name="search" class="form-control" placeholder="Search">
 									<div class="input-group-btn">
 										<button class="btn btn-default" name="search_submit" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 									</div>

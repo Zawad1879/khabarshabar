@@ -82,7 +82,7 @@ function getObjects(){
 <div class="container">
   <h1 style="font-family: 'Lobster', cursive;" class="text-center">Pocket Stories</h1>
 <?php
-
+    $count = 1;
     foreach($posts as $post): ?>
       <script>
 
@@ -113,7 +113,7 @@ function getObjects(){
         </article>
       </div> -->
 
-<div class="col-md-3">
+<div class="col-md-3" id="card<?php echo $count; ?>" >
   <div class="panel panel-success" style="margin-top:20px;">
     <div class="panel-body" >
         <div class="card blogCard">
@@ -124,14 +124,37 @@ function getObjects(){
       <em ><?php echo $date.",".$monthName." ".$year; ?></em>
     </div>
       <p class="card-text"> <?php echo $text; ?></p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal<?php echo $count; ?>">Read full text</a>
     </div>
   </div>
   </div>
   </div>
 </div>
 
+<div id="myModal<?php echo $count; ?>" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title"><?php echo $post['Blog']['title']; ?></h2>
+        <em><?php echo $post['User']['username'] ?></em></br>
+        <em ><?php echo $date.",".$monthName." ".$year; ?></em>
+      </div>
+      <div class="modal-body">
+        <p><?php echo $post['Blog']['text']; ?></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
       <?php
+      $count = $count + 1;
     endforeach;
     ?>
 

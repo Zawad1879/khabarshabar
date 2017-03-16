@@ -1,10 +1,11 @@
 <?php
 class FoodController extends AppController{
-  public $helpers = array('Html', 'Form');
+  public $helpers = array('Html', 'Form', 'Js');
 
 
   public function index() {
     $this->loadModel('TrackedCalorie');
+    $this->loadModel('Blog');
     $this->set('foods',$this->Food->find('all'));
     $uid = $this->Auth->user('id');
     $this->set('user_id', $uid);
@@ -22,11 +23,17 @@ class FoodController extends AppController{
       ));
       $this->TrackedCalorie->save();
       $this->set('today_calories',$today_calories);
+
+      $this->Food->find('all');
       //$progress = $this->tracked_calories->find('all',array('conditions' => array('tracked_calories.user_id' => $uid)));
       $progress = $this->TrackedCalorie->find('all',array('conditions' => array('TrackedCalorie.user_id' => $uid)));
       $this->set('progress',$progress);
-
       }
+
+      //send two most recent blogs
+      $first_two_posts = $this->Blog->find('all', array('limit' => 2,'order' => array('Blog.modified DESC')));
+      $this->set('first_two_posts',$first_two_posts);
+
     }
     // $this->set('user_id', 'bla');
 
@@ -128,6 +135,15 @@ class FoodController extends AppController{
     }
       $this->set('foods',$this->Food->find('all'));
   }
+
+
+    public function getBreakfastFoods() {
+          $this->autoRender= false;
+          $this->response->type('json');
+          $postoffices = $this->Food->find('all');
+          $response = json_encode($postoffices);
+          $this->response->body($response);
+       }
 
 
 }

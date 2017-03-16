@@ -20,17 +20,15 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <!DOCTYPE html>
 <html>
 <head>
-	<script
-  src="https://code.jquery.com/jquery-1.11.1.min.js"
+
+	<!-- <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet">
-	<!-- <script src="jquery-1.8.1.min.js"></script>
-	<script src="html5shiv.js"></script>
-	<script src="flip-carousel.js"></script>
-	<link href="foundation-icons.css" rel="stylesheet">
-	<link href="flip-carousel.css" rel="stylesheet"> -->
+	<link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet"> -->
+
+
 	<?php echo $this->Html->charset(); ?>
 	<title>
 		<?php echo $cakeDescription ?>:
@@ -57,24 +55,38 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
+
+var get_breakfast_foods = function () {
+$('#foodsList').empty();
+var baseUrl = '<?php echo $this->Html->url("/food/getBreakfastFoods") ?>';
+//var targetUrl = baseUrl + $id;
+var targetUrl = baseUrl;
+console.log(targetUrl);
+$.get( targetUrl, function( data ) {
+		console.log(data);
+		//$(data).each(function () { $("<option value='" + this.zip_codes.id + "'>" + this.zip_codes.postoffice + "</option>").appendTo('#NewsPostoffice'); });
+	});
+}
 </script>
+
+
 </head>
 <body>
 
 	<div id="mySidenav" style="z-index:2;" class="sidenav">
 
 
-		<div class="sideNavHeader" style="height:49%; border-bottom: 1px solid white; background-color:#f4c242; background: url(img/navbarHeaderImage.jpg);">
+		<div class="sideNavHeader" style="background: url(img/navbarHeaderImage.jpg);background-size: 100%;" >
 	  	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 			<h1 class="text-center" style="color: white;">Food Bank</h1>
 			<div class="sandbox_search">
             <div class="clear_search"><span class="glyphicon glyphicon-remove"></span></div>
-            <input class="sb_search_input search-query form-control ignoreEnforceFocus" placeholder="Search database..." type="text">
+            <input class="sb_search_input search-query form-control ignoreEnforceFocus" id="searchFood" placeholder="Search database..." type="text">
       </div>
 
-			<div class="menuButtons" >
+			<div class="menuButtons">
 			<div style="float: left; width: 50%;">
-			<button id="BreakfastButton" class="btn btn-primary">Breakfast</button>
+			<button id="BreakfastButton" class="btn btn-primary" onclick="get_breakfast_foods()">Breakfast</button>
 			<button id="LunchButton" class="btn btn-primary">Lunch</button>
 			<button id="DinnerButton" class="btn btn-primary">Dinner</button>
 			</div>
@@ -85,8 +97,8 @@ function closeNav() {
 			</div>
 			</div>
 		</div>
-
-		<div class="navbarBody">
+<script src="js/global.js"></script>
+		<div class="navbarBody" id = "foodsList">
 		  <a href="#">About</a>
 		  <a href="#">Services</a>
 		  <a href="#">Clients</a>

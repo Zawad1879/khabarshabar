@@ -1,19 +1,39 @@
 <?php $this->extend('/Layouts/default'); ?>
 
 <head>
+<style>
+ #custom-handle {
+    width: 3em;
+    height: 1.6em;
+    top: 50%;
+    margin-top: -.8em;
+    text-align: center;
+    line-height: 1.6em;
+  }
+
+  .ui-slider-handle { background: #ef2929; }
+</style>
   <!-- <link rel="stylesheet" type="text/css" href="../../webroot/css/style.css"> -->
   <script src="//d3plus.org/js/d3.js"></script>
 
   <!-- load D3plus after D3js -->
   <script src="//d3plus.org/js/d3plus.js"></script>
 
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
   <script>
 
     var sample_data = [];
 
-    function appendToArray(month, day, calories){
+    //diet calculator variables
+    var gender = "";
 
+    function appendToArray(month, day, calories){
       sample_data.push({
         'day'  : parseInt(day),
         'month' : month,
@@ -28,10 +48,41 @@
       return sample_data;
     }
 
+    $( document ).ready(function() {
+    
+    // toggle gender buttons
+
+    $( "#male" ).click(function() {
+      $(this).attr("src", "img/male-active.png");
+      $("#female").attr("src", "img/female-inactive.png");
+        gender = "male";
+    });
+    $( "#female" ).click(function() {
+      $(this).attr("src", "img/female-active.png");
+      $("#male").attr("src", "img/male-inactive.png");
+        gender = "female";
+    });
+    //toggled gender buttons
+
+
+    var handle = $( "#custom-handle" );
+    $( "#slider" ).slider({
+      create: function() {
+        handle.text( $( this ).slider( "value" ) );
+      },
+      slide: function( event, ui ) {
+        handle.text( ui.value );
+      }
+    });
+
+
+
+  });
   </script>
 
 
 </head>
+<?php if ($this->Session->read('Auth.User')){ ?>
 <div class="container">
   <article class="row">
       <section class="col-lg-12">
@@ -91,7 +142,7 @@
     </section>
   </article>
 </div>
-
+<?php } ?>
 <!-- Asiks code -->
 
 <div class="banner">
@@ -247,6 +298,69 @@
               </form>
             <!-- </form> -->
             </div>
+
+            <!-- Attempting the javascript interface -->
+
+           
+
+            <div class="calculate-UI">
+            <div class="container">
+              <div class="col-sm-3">
+                
+                <!-- Gender selection buttons -->
+                <form>
+                <b style="font-size: 23px;">Sex:</b>
+                <img id="female" src="img/female-inactive.png" draggable="false">
+                <input type="radio" name="gender" value="female" style="visibility:hidden">
+                
+                <img id="male" src="img/male-inactive.png" draggable="false">
+                <input type="radio" name="gender" value="male" style="visibility:hidden">
+               
+                </form>
+                <!-- Gender selection buttons -->
+
+                <!-- Attribute sliders -->
+                <div id="slider">
+                  <div id="custom-handle" class="ui-slider-handle"></div>
+                </div>
+
+
+
+                <!-- Attribute sliders -->
+
+
+
+
+
+
+
+
+              </div>
+
+
+              <div class="col-sm-3">
+                <p>Hlo</p>
+              </div>
+
+
+              <div class="col-sm-3">
+              
+              </div>
+            </div>
+            </div>
+            
+
+            
+
+
+
+
+ <!-- Attempting the javascript interface -->
+
+
+
+
+
         </div>
 
       </section>
@@ -258,27 +372,77 @@
               			<h3>Recent posts</h3>
               		</div>
               		<div class="list-group">
-              				<a href="#" class="list-group-item">
+                    <?php $count = 1; ?>
+                    <?php foreach($first_two_posts as $post):
+
+
+                      $date = substr($post['Blog']['created'], 8, 2);
+                      $monthNum = substr($post['Blog']['created'], 5, 2);
+                      $year = substr($post['Blog']['created'], 0, 4);
+                      $dateObj   = DateTime::createFromFormat('!m', $monthNum);
+                      $monthName = $dateObj->format('F'); ?>
+
+
+
+              				<a href="#" class="list-group-item" id="listItem<?php echo $count; ?>" data-toggle="modal" data-target="#myModal<?php echo $count; ?>">
               						<div class="col-sm-4">
               							<img src="img/1.jpg" width="100%">
               						</div>
               						<div class="col-sm-8">
-              							<h3 class="list-group-item-heading">Twitter Bootstrap 3 Menu</h3>
-              							<p class="list-group-item-text">To create navbars that is not fixed on the top or bottom, place it anywhere within a .container, which sets the width of your site and content.</p>
+              							<h3 class="list-group-item-heading"><?php echo $post['Blog']['title']; ?></h3>
+                            <em><?php echo $post['User']['username'] ?></em></br>
+                            <em ><?php echo $date.",".$monthName." ".$year; ?></em>
+              							<p class="list-group-item-text"><?php echo $post['Blog']['text']; ?></p>
               						</div>
               						<div style="clear:both"></div>
               				</a>
-              				<a href="#" class="list-group-item">
-              						<div class="col-sm-4">
-              							<img src="img/1.jpg" width="100%">
-              						</div>
-              						<div class="col-sm-8">
-              							<h3 class="list-group-item-heading">Twitter Bootstrap 3 Menu</h3>
-              							<p class="list-group-item-text">To create navbars that is not fixed on the top or bottom, place it anywhere within a .container, which sets the width of your site and content.</p>
-              						</div>
-              						<div style="clear:both"></div>
-              				</a>
+
+                      <div id="myModal<?php echo $count; ?>" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h2 class="modal-title"><?php echo $post['Blog']['title']; ?></h2>
+                              <em><?php echo $post['User']['username'] ?></em></br>
+                              <em ><?php echo $date.",".$monthName." ".$year; ?></em>
+                            </div>
+                            <div class="modal-body">
+                              <p><?php echo $post['Blog']['text']; ?></p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <?php $count = $count + 1; ?>
+                    <?php endforeach; ?>
               		</div>
+
+
+<!-- <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+
+
               	</div>
               </aside>
 
@@ -321,7 +485,7 @@
 <script>
   sample_data = getData();
   if(sample_data.length != 0){
-    //console.log(sample_data);
+    console.log(sample_data);
 
   var visualization = d3plus.viz()
     .container("#viz")  // container DIV to hold the visualization
@@ -334,7 +498,7 @@
     .draw()             // finally, draw the visualization!
   }
   else{
-    alert("Empty");
+    //alert("Empty");
   }
 </script>
 <?php } ?>

@@ -25,7 +25,12 @@ body{
 
 }
 .navbar-default {
-  background-color: #FAFB3D;
+  /*background-color: #FAFB3D;*/
+	background: -webkit-linear-gradient(left, white , yellow); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(left, white , yellow); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(left, white , yellow); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to left, white , yellow); /* Standard syntax */
+}
  }
 
 a {
@@ -92,6 +97,21 @@ display: -webkit-box;
 overflow: hidden;
 }
 
+.list-group .list-group-item{
+	min-height: 238px;
+	max-height: 238px;
+	line-height: 18px;
+	overflow: hidden;
+}
+
+.list-group .list-group-item p{
+	margin: 0 0 10px;
+-webkit-line-clamp: 6;
+-webkit-box-orient: vertical;
+display: -webkit-box;
+overflow: hidden;
+}
+
 .blogcard .btn-primary {
 	position: absolute;
 	bottom: 32px;
@@ -131,10 +151,11 @@ overflow: hidden;
 
 .sidenav .closebtn {
     position: absolute;
-    top: 0;
-    right: 25px;
+    top: -20px;
+    right: 3px;
     font-size: 36px;
     margin-left: 50px;
+		color: white;
 }
 
 @media screen and (max-height: 450px) {
@@ -181,4 +202,16 @@ overflow: hidden;
     background: -o-linear-gradient(#dbd6c9, #fff); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#dbd6c9, #fff); /* For Firefox 3.6 to 15 */
     background: linear-gradient(#dbd6c9, #fff); /* Standard syntax */
+}
+
+.sideNavHeader{
+	height:49%;
+	border-bottom: 1px solid white;
+	background-color:#f4c242;
+	background: url(img/navbarHeaderImage.jpg);
+	margin-top: -80px;
+}
+
+.calculate-UI img{
+    margin-left: 23px;
 }

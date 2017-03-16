@@ -36,11 +36,11 @@
 		e.preventDefault();
 	});
 
-	formContainer.find('form').submit(function(e){
-		// Preventing form submissions. If you implement
-		// a backend, you might want to remove this code
-		e.preventDefault();
-	});
+	// formContainer.find('form').submit(function(e){
+	// 	// Preventing form submissions. If you implement
+	// 	// a backend, you might want to remove this code
+	// 	e.preventDefault();
+	// });
 
 
 	// A helper function that checks for the

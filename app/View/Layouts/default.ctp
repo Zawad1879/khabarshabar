@@ -179,17 +179,17 @@ $.get( targetUrl, function( data ) {
 							<a class="page-scroll" href="/khabarshabar/">Home</a>
 						</li>
 						<li>
-							<a class="page-scroll" href="#">Foods</a>
+							<a class="page-scroll" href="/khabarshabar/scheduler">Scheduler</a>
 						</li>
-						<li>
+						<!-- <li>
 							<a class="page-scroll" href="#">Exercise</a>
-						</li>
+						</li> -->
 						<li>
 							<a class="page-scroll" href="/khabarshabar/Blogs">Blog</a>
 						</li>
-						<li>
+						<!-- <li>
 							<a class="page-scroll" href="#">Shop</a>
-						</li>
+						</li> -->
 						<li>
 							<a class="page-scroll" href="#">About Us</a>
 						</li>

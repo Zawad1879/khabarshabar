@@ -1,7 +1,7 @@
 <?php $this->extend('/Layouts/default'); ?>
 
 <head>
-<style>
+<!-- <style>
  #custom-handle {
     width: 3em;
     height: 1.6em;
@@ -11,8 +11,8 @@
     line-height: 1.6em;
   }
 
-  .ui-slider-handle { background: #ef2929; }
-</style>
+
+</style> -->
   <!-- <link rel="stylesheet" type="text/css" href="../../webroot/css/style.css"> -->
   <script src="//d3plus.org/js/d3.js"></script>
 
@@ -20,10 +20,10 @@
   <script src="//d3plus.org/js/d3plus.js"></script>
 
   <script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
+  src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet" />
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 
   <script>
@@ -49,35 +49,11 @@
     }
 
     $( document ).ready(function() {
-    
-    // toggle gender buttons
-
-    $( "#male" ).click(function() {
-      $(this).attr("src", "img/male-active.png");
-      $("#female").attr("src", "img/female-inactive.png");
-        gender = "male";
-    });
-    $( "#female" ).click(function() {
-      $(this).attr("src", "img/female-active.png");
-      $("#male").attr("src", "img/male-inactive.png");
-        gender = "female";
-    });
-    //toggled gender buttons
-
-
-    var handle = $( "#custom-handle" );
-    $( "#slider" ).slider({
-      create: function() {
-        handle.text( $( this ).slider( "value" ) );
-      },
-      slide: function( event, ui ) {
-        handle.text( ui.value );
-      }
-    });
-
-
 
   });
+
+
+
   </script>
 
 
@@ -140,6 +116,26 @@
            </div>
         </div>
     </section>
+
+
+
+<section class="col-lg-12">
+        <div class="panel panel-success" style="margin-top:20px;">
+        <div class="panel-heading">
+          <h3>Homepage</h3>
+        </div>
+          <div class="panel-body">
+          <div class="col-md-12">
+
+          </div>
+
+
+           </div>
+        </div>
+</section>
+
+
+
   </article>
 </div>
 <?php } ?>
@@ -299,63 +295,6 @@
             <!-- </form> -->
             </div>
 
-            <!-- Attempting the javascript interface -->
-
-           
-
-            <div class="calculate-UI">
-            <div class="container">
-              <div class="col-sm-3">
-                
-                <!-- Gender selection buttons -->
-                <form>
-                <b style="font-size: 23px;">Sex:</b>
-                <img id="female" src="img/female-inactive.png" draggable="false">
-                <input type="radio" name="gender" value="female" style="visibility:hidden">
-                
-                <img id="male" src="img/male-inactive.png" draggable="false">
-                <input type="radio" name="gender" value="male" style="visibility:hidden">
-               
-                </form>
-                <!-- Gender selection buttons -->
-
-                <!-- Attribute sliders -->
-                <div id="slider">
-                  <div id="custom-handle" class="ui-slider-handle"></div>
-                </div>
-
-
-
-                <!-- Attribute sliders -->
-
-
-
-
-
-
-
-
-              </div>
-
-
-              <div class="col-sm-3">
-                <p>Hlo</p>
-              </div>
-
-
-              <div class="col-sm-3">
-              
-              </div>
-            </div>
-            </div>
-            
-
-            
-
-
-
-
- <!-- Attempting the javascript interface -->
 
 
 
